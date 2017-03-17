@@ -1,0 +1,19 @@
+## Johdanto
+
+Projektin aiheena on ystävänvälityspalvelu, jossa asiakkaat voivat kirjautua,
+selailla toistensa esittelysivuja ja lähetellä viestejä toisilleen. 
+
+## Käyttötapaukset
+
+### Asiakas:
+
+- Kirjaudu sisään
+- Esittelysivujen haku ja katselu
+- Viestin lähettäminen
+- Viestien katselu
+- Esittelysivujen luonti, muokkaus ja poisto
+
+### Ylläpito:
+
+- Laskun lähetys asiakkaalle
+- Yhteenvetoja järjestelmän käytöstä
