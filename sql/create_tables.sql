@@ -10,24 +10,24 @@ CREATE TABLE Customer(
 );
 
 CREATE TABLE Relationship(
-	type_id SERIAL PRIMARY KEY,
+	relationship_id SERIAL PRIMARY KEY,
 	type VARCHAR(20) NOT NULL UNIQUE,
 	gender CHAR(1)
 );
 
 CREATE TABLE LookingFor(
-	FOREIGN KEY(relationship) REFERENCES Relationship(relationship_id),
-	FOREIGN KEY(customer) REFERENCES Customer(customer_id)
-);	
+	relationship INTEGER REFERENCES Relationship,
+	customer INTEGER REFERENCES Customer
+);
 
 
 CREATE TABLE Message(
 	message_id SERIAL PRIMARY KEY,
-	receiver VARCHAR(15) NOT ǸULL,
+	receiver VARCHAR(15) NOT NULL,
 	title VARCHAR(20) NOT NULL,
 	content VARCHAR(2000) NOT NULL,
 	time Timestamp NOT NULL,
-	FOREIGN KEY(customer) REFERENCES Customer(customer_id)
+	customer INTEGER REFERENCES Customer
 );
 
 CREATE TABLE Page(
@@ -35,17 +35,18 @@ CREATE TABLE Page(
 	title VARCHAR(20) NOT NULL,
 	content VARCHAR(2000) NOT NULL,
 	private boolean DEFAULT FALSE,
-	FOREIGN KEY(customer) REFERENCES Customer(customer_id)
+	customer INTEGER REFERENCES Customer
 );
 
 CREATE TABLE Invoice(
 	invoice_id SERIAL PRIMARY KEY,
+	customer SERIAL,
 	amount FLOAT NOT NULL,
 	time Timestamp NOT NULL,
-	FOREIGN KEY(customer) REFERENCES Customer(customer_id)
+	customer INTEGER REFERENCES Customer
 );
 
 CREATE TABLE Access(
-	FOREIGN KEY(page) REFERENCES Page(page_id),
-	FOREIGN KEY(customer) REFERENCES Customer(customer_id)
+	page INTEGER REFERENCES Page,
+	customer INTEGER REFERENCES Customer
 );
