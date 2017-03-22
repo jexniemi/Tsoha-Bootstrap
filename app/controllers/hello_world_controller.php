@@ -23,6 +23,14 @@ class HelloWorldController extends BaseController {
     public static function login() {
         View::make('suunnitelmat/login.html');
     }
+    
+    public static function myPage() {
+        View::make('suunnitelmat/myPage.html');
+    }
+    
+    public static function myPageEdit() {
+        View::make('suunnitelmat/myPageEdit.html');
+    }
 
     public static function profile() {
         View::make('suunnitelmat/myProfile.html');
@@ -34,6 +42,14 @@ class HelloWorldController extends BaseController {
 
     public static function messages() {
         View::make('suunnitelmat/messages.html');
+    }
+    
+    public static function newMessage() {
+        View::make('suunnitelmat/newMessage.html');
+    }
+    
+    public static function register() {
+        View::make('suunnitelmat/register.html');
     }
 
 }
