@@ -44,6 +44,11 @@ $routes->get('/test/newMessage', function() {
     HelloWorldController::newMessage();
 });
 
+$routes->get('/test/viewMessage', function() {
+    HelloWorldController::viewMessage();
+});
+
 $routes->get('/test/register', function() {
     HelloWorldController::register();
 });
+

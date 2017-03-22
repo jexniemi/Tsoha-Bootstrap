@@ -48,6 +48,10 @@ class HelloWorldController extends BaseController {
         View::make('suunnitelmat/newMessage.html');
     }
     
+    public static function viewMessage() {
+        View::make('suunnitelmat/viewMessage.html');
+    }    
+    
     public static function register() {
         View::make('suunnitelmat/register.html');
     }
