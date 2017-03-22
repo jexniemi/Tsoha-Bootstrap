@@ -12,6 +12,7 @@ Yleisiä linkkejä:
 ## Työn linkkejä
 
 [Etusivu](http://jexniemi.users.cs.helsinki.fi/tsoha/test)
+
 [Selailu](http://jexniemi.users.cs.helsinki.fi/tsoha/test/browse)
 [Profiili](http://jexniemi.users.cs.helsinki.fi/tsoha/test/myprofile)
 [Profiilin muokkaus](http://jexniemi.users.cs.helsinki.fi/tsoha/test/editprofile)
