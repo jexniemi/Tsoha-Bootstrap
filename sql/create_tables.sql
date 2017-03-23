@@ -6,7 +6,7 @@ CREATE TABLE Customer(
 	city VARCHAR(30) NOT NULL,
 	country VARCHAR(30) NOT NULL,
 	gender VARCHAR(1) NOT NULL,
-	last_seen Timestamp NOT NULL
+	last_seen Timestamp
 );
 
 CREATE TABLE Relationship(
@@ -16,8 +16,8 @@ CREATE TABLE Relationship(
 );
 
 CREATE TABLE LookingFor(
-	relationship INTEGER REFERENCES Relationship,
-	customer INTEGER REFERENCES Customer
+	relationship INTEGER REFERENCES Relationship(relationship_id),
+	customer INTEGER REFERENCES Customer(customer_id)
 );
 
 
@@ -26,8 +26,8 @@ CREATE TABLE Message(
 	receiver VARCHAR(15) NOT NULL,
 	title VARCHAR(20) NOT NULL,
 	content VARCHAR(2000) NOT NULL,
-	time Timestamp NOT NULL,
-	customer INTEGER REFERENCES Customer
+	time Timestamp,
+	customer INTEGER REFERENCES Customer(customer_id)
 );
 
 CREATE TABLE Page(
@@ -40,9 +40,8 @@ CREATE TABLE Page(
 
 CREATE TABLE Invoice(
 	invoice_id SERIAL PRIMARY KEY,
-	customer SERIAL,
 	amount FLOAT NOT NULL,
-	time Timestamp NOT NULL,
+	time Timestamp,
 	customer INTEGER REFERENCES Customer
 );
 
