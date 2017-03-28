@@ -1,54 +1,51 @@
 <?php
 
-$routes->get('/', function() {
-    HelloWorldController::index();
-});
 
 $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
 });
 
-$routes->get('/test', function() {
+$routes->get('/', function() {
     HelloWorldController::front();
 });
 
-$routes->get('/test/browse', function() {
+$routes->get('/browse', function() {
     HelloWorldController::browseProfiles();
 });
 
-$routes->get('/test/login', function() {
+$routes->get('/login', function() {
     HelloWorldController::login();
 });
 
-$routes->get('/test/myprofile', function() {
+$routes->get('/myprofile', function() {
     HelloWorldController::profile();
 });
 
-$routes->get('/test/editprofile', function() {
+$routes->get('/editprofile', function() {
     HelloWorldController::editProfile();
 });
 
-$routes->get('/test/myPage', function() {
+$routes->get('/mypage', function() {
     HelloWorldController::myPage();
 });
 
-$routes->get('/test/myPageEdit', function() {
+$routes->get('/mypage_edit', function() {
     HelloWorldController::myPageEdit();
 });
 
-$routes->get('/test/messages', function() {
+$routes->get('/messages', function() {
     HelloWorldController::messages();
 });
 
-$routes->get('/test/newMessage', function() {
+$routes->get('/newmessage', function() {
     HelloWorldController::newMessage();
 });
 
-$routes->get('/test/viewMessage', function() {
+$routes->get('/viewmessage', function() {
     HelloWorldController::viewMessage();
 });
 
-$routes->get('/test/register', function() {
+$routes->get('/register', function() {
     HelloWorldController::register();
 });
 

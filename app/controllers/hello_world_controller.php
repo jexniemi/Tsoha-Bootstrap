@@ -9,51 +9,55 @@ class HelloWorldController extends BaseController {
 
     public static function sandbox() {
         // Testaa koodiasi täällä
-        View::make('helloworld.html');
+        $hello = Message::find('hello world');
+        $messages = Message::all();
+        
+        Kint::dump($messages);
+        Kint::dump($hello);
     }
 
     public static function front() {
-        View::make('suunnitelmat/frontpage.html');
+        View::make('frontpage.html');
     }
 
     public static function browseProfiles() {
-        View::make('suunnitelmat/browseFriends.html');
+        View::make('profile/browseFriends.html');
     }
 
     public static function login() {
-        View::make('suunnitelmat/login.html');
+        View::make('profile/login.html');
     }
     
     public static function myPage() {
-        View::make('suunnitelmat/myPage.html');
+        View::make('page/myPage.html');
     }
     
     public static function myPageEdit() {
-        View::make('suunnitelmat/myPageEdit.html');
+        View::make('page/myPageEdit.html');
     }
 
     public static function profile() {
-        View::make('suunnitelmat/myProfile.html');
+        View::make('profile/myProfile.html');
     }
 
     public static function editProfile() {
-        View::make('suunnitelmat/myProfileEdit.html');
+        View::make('profile/myProfileEdit.html');
     }
 
     public static function messages() {
-        View::make('suunnitelmat/messages.html');
+        View::make('message/messages.html');
     }
     
     public static function newMessage() {
-        View::make('suunnitelmat/newMessage.html');
+        View::make('message/newMessage.html');
     }
     
     public static function viewMessage() {
-        View::make('suunnitelmat/viewMessage.html');
+        View::make('message/viewMessage.html');
     }    
     
     public static function register() {
-        View::make('suunnitelmat/register.html');
+        View::make('profile/register.html');
     }
 
 }
