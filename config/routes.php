@@ -1,6 +1,5 @@
 <?php
 
-
 $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
 });
@@ -34,15 +33,20 @@ $routes->get('/mypage_edit', function() {
 });
 
 $routes->get('/messages', function() {
-    HelloWorldController::messages();
+    MessageController::messages();
+});
+
+$routes->post('/message', function() {
+    MessageController::store();
 });
 
 $routes->get('/newmessage', function() {
-    HelloWorldController::newMessage();
+    MessageController::newMessage();
 });
 
-$routes->get('/viewmessage', function() {
-    HelloWorldController::viewMessage();
+
+$routes->get('/viewmessage/:message_id', function($message_id) {
+    MessageController::viewMessage($message_id);
 });
 
 $routes->get('/register', function() {

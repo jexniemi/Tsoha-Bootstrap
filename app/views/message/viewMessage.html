@@ -1,15 +1,22 @@
-{% extends "suunnitelmat/baseX.html" %}
+{% extends "baseX.html" %}
 {% block content %}
+
+<div class ="alert alert-success">
+    {{msg}}
+</div>
 
 <label/>From</label>
 
 <p>Lähettäjä</p/>
 
-<h2>Topic</h2>
+<h3>{{message.title}}</h3>
 
-<p>Viestin sisältö</p>
+
+<p>{{message.content}}</p>
+
+<br>
 
 <button class="btn btn-primary">Reply</button>
-<br>
+
 
 {% endblock %}

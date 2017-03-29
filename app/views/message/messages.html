@@ -1,4 +1,4 @@
-{% extends "suunnitelmat/baseX.html" %}
+{% extends "baseX.html" %}
 {% block content %}
 <h1>My messages</h1>
 
@@ -18,7 +18,7 @@
     <tbody>
         {% for message in messages %}
         <tr>
-            <td><a href="{{base_path}}/message/{{message.id}}">{{message.topic}}</td>
+            <td><a href="{{base_path}}/viewmessage/{{message.message_id}}">{{message.title}}</td>
             <td>{{message.sender}}</td>
             <td>{{message.time}}</td>
         </tr> 

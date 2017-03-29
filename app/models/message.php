@@ -13,11 +13,11 @@ class Message extends BaseModel {
         $query->execute();
 
         $rows = $query->fetchAll();
-        $games = array();
+        $messages = array();
 
         foreach ($rows as $row) {
 
-            $message[] = new Message(array(
+            $messages[] = new Message(array(
                 'message_id' => $row['message_id'],
                 'receiver' => $row['receiver'],
                 'title' => $row['title'],
@@ -25,14 +25,14 @@ class Message extends BaseModel {
                 'time' => $row['time'],
                 'sender' => $row['sender']
             ));
-
-            return $message;
         }
+        
+        return $messages;
     }
 
-    public static function find($title) {
-        $query = DB::connection()->prepare('SELECT * FROM Message WHERE title = :title LIMIT 1');
-        $query->execute(array('title' => $title));
+    public static function find($message_id) {
+        $query = DB::connection()->prepare('SELECT * FROM Message WHERE message_id = :message_id LIMIT 1');
+        $query->execute(array('message_id' => $message_id));
         $row = $query->fetch();
 
         if ($row) {
@@ -49,6 +49,19 @@ class Message extends BaseModel {
         }
 
         return null;
+    }
+    
+    public function save(){
+        $query = DB::connection() -> prepare('INSERT INTO Message (receiver, title, content) VALUES (:receiver, :title, :content) RETURNING message_id');
+        
+        $query -> execute(array('receiver' => $this->receiver, 'title' => $this->title, 'content' => $this->content));
+        
+        $row = $query->fetch();
+        
+        Kint::trace();
+        Kint::dump($row);
+        
+        $this->message_id = $row['message_id'];
     }
 
 }

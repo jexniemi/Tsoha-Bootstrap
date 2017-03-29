@@ -27,7 +27,7 @@ Yleisiä linkkejä:
 
 [Uusi viesti](http://jexniemi.users.cs.helsinki.fi/tsoha/newmessage)
 
-[Viestin katselu](http://jexniemi.users.cs.helsinki.fi/tsoha/viewmessage)
+[Viestin katselu](http://jexniemi.users.cs.helsinki.fi/tsoha/viewmessage/1)
 
 [Login](http://jexniemi.users.cs.helsinki.fi/tsoha/login)
 
