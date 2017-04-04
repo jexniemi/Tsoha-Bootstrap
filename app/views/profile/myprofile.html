@@ -1,0 +1,45 @@
+{% extends "baseX.html" %}
+{% block content %}
+<h1>My profile</h1>
+
+<label>Username</label>
+<p>ASD</p>
+
+<label>Country</label>
+
+<p>ASD</p>
+
+<label>Looking for</label>
+
+<p>ASD</p>
+
+
+<a href="/tsoha/editprofile" class="btn btn-primary">Edit profile</a>
+
+<br>
+<br>
+
+<label>My pages</label>
+<br>
+<a href="/tsoha/newpage" class="btn btn-primary">Create new page</a>
+<br>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Private</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for page in pages %}
+        <tr>
+            <td><a href="{{base_path}}/viewpage/{{page.page_id}}">{{page.title}}</td>
+            <td></td>
+        </tr> 
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

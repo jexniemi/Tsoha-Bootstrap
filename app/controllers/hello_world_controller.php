@@ -9,11 +9,17 @@ class HelloWorldController extends BaseController {
 
     public static function sandbox() {
         // Testaa koodiasi täällä
-        $hello = Message::find('hello world');
-        $messages = Message::all();
+        $message = new Message(array(
+        'receiver' => 'asdasdas',
+        'title' => 'as',
+        'content' => 'asdassda',
+        'time' => 'asdasd',
+        'sender' => 'asdadasa'
+
+        ));
+        $errors = $message -> errors();
         
-        Kint::dump($messages);
-        Kint::dump($hello);
+        Kint::dump($errors);
     }
 
     public static function front() {
@@ -27,35 +33,35 @@ class HelloWorldController extends BaseController {
     public static function login() {
         View::make('profile/login.html');
     }
-    
+
     public static function myPage() {
-        View::make('page/myPage.html');
+        View::make('page/viewpage.html');
     }
-    
+
     public static function myPageEdit() {
-        View::make('page/myPageEdit.html');
+        View::make('page/editpage.html');
     }
 
     public static function profile() {
-        View::make('profile/myProfile.html');
+        View::make('profile/myprofile.html');
     }
 
     public static function editProfile() {
-        View::make('profile/myProfileEdit.html');
+        View::make('profile/editprofile.html');
     }
 
     public static function messages() {
         View::make('message/messages.html');
     }
-    
+
     public static function newMessage() {
         View::make('message/newMessage.html');
     }
-    
+
     public static function viewMessage() {
         View::make('message/viewMessage.html');
-    }    
-    
+    }
+
     public static function register() {
         View::make('profile/register.html');
     }

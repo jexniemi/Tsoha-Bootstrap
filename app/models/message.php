@@ -6,6 +6,10 @@ class Message extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array(
+            'validate_receiver', 
+            'validate_topic',
+            'validate_content');
     }
 
     public static function all() {
@@ -63,5 +67,17 @@ class Message extends BaseModel {
         
         $this->message_id = $row['message_id'];
     }
-
+    
+    public function validate_receiver(){
+        return $this ->validate_string_minmax($this -> receiver, 4, 20);
+    }
+    
+    public function validate_topic(){
+        return $this ->validate_string_minmax($this -> title, 1, 20);
+    }
+    
+    public function validate_content(){
+         return $this ->validate_string_minmax($this -> title, 1, 2000);
+    }
+    
 }

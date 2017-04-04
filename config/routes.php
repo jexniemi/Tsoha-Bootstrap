@@ -17,20 +17,29 @@ $routes->get('/login', function() {
 });
 
 $routes->get('/myprofile', function() {
-    HelloWorldController::profile();
+    PageCtrl::pages();
 });
 
 $routes->get('/editprofile', function() {
     HelloWorldController::editProfile();
 });
 
-$routes->get('/mypage', function() {
-    HelloWorldController::myPage();
+$routes->get('/newpage', function() {
+    PageCtrl::newPage();
 });
 
-$routes->get('/mypage_edit', function() {
-    HelloWorldController::myPageEdit();
+$routes->get('/editpage/:page_id', function($page_id) {
+    PageCtrl::edit($page_id);
 });
+
+$routes->get('/viewpage/:page_id', function($page_id) {
+     PageCtrl::viewPage($page_id);
+});
+
+$routes->post('/page', function() {
+    PageCtrl::store();
+});
+
 
 $routes->get('/messages', function() {
     MessageController::messages();
@@ -43,7 +52,6 @@ $routes->post('/message', function() {
 $routes->get('/newmessage', function() {
     MessageController::newMessage();
 });
-
 
 $routes->get('/viewmessage/:message_id', function($message_id) {
     MessageController::viewMessage($message_id);

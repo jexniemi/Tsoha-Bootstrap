@@ -11,7 +11,7 @@ class MessageController extends BaseController {
         $message = Message::find($message_id);
         View::make('message/viewMessage.html', array('message' => $message));
     }
-    
+
     public static function newMessage() {
         View::make('message/newMessage.html');
     }
@@ -19,17 +19,22 @@ class MessageController extends BaseController {
     public static function store() {
         $params = $_POST;
 
-        $message = new Message(array(
+        $attributes = array(
             'receiver' => $params['receiver'],
             'title' => $params['title'],
             'content' => $params['content']
-        ));
-        
-        Kint::dump($params);
+        );
+        $message = new Message($attributes);
+        $errors = $message->errors();
 
-        $message->save();
-        
-        Redirect::to('/viewmessage/' . $message->message_id, array('msg' => 'Message sent'));
+        if (count($errors) == 0) {
+            $message->save();
+
+            Redirect::to('/viewmessage/' . $message->message_id, array('msg' => 'Message sent'));
+        } else {
+            View::make('message/newMessage.html', array('errors' => $errors, 'attributes' => $attributes));
+            ;
+        }
     }
 
 }
