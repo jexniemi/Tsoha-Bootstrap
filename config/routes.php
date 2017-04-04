@@ -13,7 +13,12 @@ $routes->get('/browse', function() {
 });
 
 $routes->get('/login', function() {
-    HelloWorldController::login();
+    // Kirjautumislomakkeen esittäminen
+    UserCtrl::login();
+});
+$routes->post('/login', function() {
+    // Kirjautumisen käsittely
+    UserCtrl::handle_login();
 });
 
 $routes->get('/myprofile', function() {
@@ -33,8 +38,17 @@ $routes->get('/editpage/:page_id', function($page_id) {
 });
 
 $routes->get('/viewpage/:page_id', function($page_id) {
-     PageCtrl::viewPage($page_id);
+    PageCtrl::viewPage($page_id);
 });
+
+$routes->post('/editpage/:page_id', function($page_id) {
+    PageCtrl::update($page_id);
+});
+
+$routes->post('/page/:page_id/destroy', function($page_id) {
+    PageCtrl::destroy($page_id);
+});
+
 
 $routes->post('/page', function() {
     PageCtrl::store();

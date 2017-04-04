@@ -65,6 +65,27 @@ class Page extends BaseModel {
         $this->page_id = $row['page_id'];
     }
     
+    public function update(){
+        $query = DB::connection() -> prepare('UPDATE Page '
+                . 'SET title = :title, content = :content '
+                . 'WHERE page_id = :page_id '
+                . 'RETURNING page_id');
+        
+        $query -> execute(array('page_id' => $this->page_id, 'title' => $this->title, 'content' => $this->content));
+        
+        $row = $query->fetch();
+        
+        Kint::trace();
+        Kint::dump($row);
+        
+        $this->page_id = $row['page_id'];
+    }    
+    
+    public function delete(){
+    $query = DB::connection() -> prepare('DELETE FROM Page WHERE page_id = :page_id');
+    $query -> execute(array('page_id' => $this->page_id));
+    }
+    
     
     public function validate_title(){
         return $this ->validate_string_minmax($this -> title, 1, 20);

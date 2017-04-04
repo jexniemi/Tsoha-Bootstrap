@@ -29,6 +29,7 @@
         <tr>
             <th>Title</th>
             <th>Private</th>
+            <th>Delete</th>
         </tr>
     </thead>
 
@@ -37,9 +38,16 @@
         <tr>
             <td><a href="{{base_path}}/viewpage/{{page.page_id}}">{{page.title}}</td>
             <td></td>
+            <td><form method="post" action="{{base_path}}/page/{{page.page_id}}/destroy" style="display: inline-block;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form></td>
         </tr> 
         {% endfor %}
     </tbody>
 </table>
+
+<div class ="alert alert-success">
+    {{msg}}
+</div>
 
 {% endblock %}
