@@ -1,8 +1,15 @@
 {% extends "baseX.html" %}
 {% block content %}
+
+{% if user_logged_in %}
+<h2>Already logged in</h2>
+
+{% else %}
+
+
 <h1>Log in</h1>
 
-<div class ="alert alert-success">
+<div class ="alert alert-danger">
     {{msg}}
 </div>
 
@@ -20,5 +27,9 @@
 
     <button type="submit" class="btn btn-primary">Log in</button>
 </form>
+
+
+{% endif %}
+
 {% endblock %}
 

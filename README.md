@@ -9,6 +9,14 @@ Yleisiä linkkejä:
 
 [Ystävänvälityspalvelu](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Ystavanvalityspalvelu.html) 
 
+## Testitunnuksia kirjautumiseen
+
+Käyttäjätunnus: jukka3
+Salasana: paavali123
+
+Käyttäjätunnus: jaajaa4
+Salasana: mxzzz
+
 ## Työn linkkejä
 
 [Etusivu](http://jexniemi.users.cs.helsinki.fi/tsoha/)

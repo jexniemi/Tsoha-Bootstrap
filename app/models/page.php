@@ -52,6 +52,27 @@ class Page extends BaseModel {
         return null;
     }
     
+    public static function userAll($customer_id) {
+        $query = DB::connection()->prepare('SELECT * FROM Page WHERE customer = :customer');
+        $query->execute(array('customer' => $customer_id));
+
+        $rows = $query->fetchAll();
+        $pages = array();
+
+        foreach ($rows as $row) {
+
+            $pages[] = new Page(array(
+                'page_id' => $row['page_id'],
+                'title' => $row['title'],
+                'content' => $row['content'],
+                'private' => $row['private'],
+                'customer' => $row['customer']
+            ));
+        }
+        
+        return $pages;
+    }
+    
     public function save(){
         $query = DB::connection() -> prepare('INSERT INTO Page (title, content, private, customer) VALUES (:title, :content, :private, :customer) RETURNING page_id');
         

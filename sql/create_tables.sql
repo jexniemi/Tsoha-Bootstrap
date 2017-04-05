@@ -14,7 +14,7 @@ CREATE TABLE Customer(
 
 CREATE TABLE Message(
 	message_id SERIAL PRIMARY KEY,
-	receiver VARCHAR(15) NOT NULL,
+	receiver INTEGER REFERENCES Customer(customer_id),
 	title VARCHAR(20) NOT NULL,
 	content VARCHAR(2000) NOT NULL,
 	time Timestamp,

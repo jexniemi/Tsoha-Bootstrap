@@ -3,7 +3,8 @@
 class MessageController extends BaseController {
 
     public static function messages() {
-        $messages = Message::all();
+        self::check_logged_in();
+        $messages = Message::receiverAll(self::get_user_logged_in( ) -> customer_id);
         View::make('message/messages.html', array('messages' => $messages));
     }
 
@@ -18,11 +19,14 @@ class MessageController extends BaseController {
 
     public static function store() {
         $params = $_POST;
+        
+        $user = new User(array('username' => $params['receiver']));
 
         $attributes = array(
-            'receiver' => $params['receiver'],
+            'receiver' => $user::findIdByUsername($user -> username),
             'title' => $params['title'],
-            'content' => $params['content']
+            'content' => $params['content'],
+            'sender' =>  self::get_user_logged_in( ) -> customer_id
         );
         $message = new Message($attributes);
         $errors = $message->errors();
@@ -33,7 +37,6 @@ class MessageController extends BaseController {
             Redirect::to('/viewmessage/' . $message->message_id, array('msg' => 'Message sent'));
         } else {
             View::make('message/newMessage.html', array('errors' => $errors, 'attributes' => $attributes));
-            ;
         }
     }
 

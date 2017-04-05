@@ -9,7 +9,10 @@
 INSERT INTO Customer (username, password, birthday, country, gender) VALUES 
 ('jukka3', 'paavali123', '1992-06-25', 'Finland', 'm');
 
-INSERT INTO Message (receiver, title, content) VALUES ('jukka56', 'Hello world', 'Moi. Ollaanko ystäviä?');
-INSERT INTO Message (receiver, title, content) VALUES ('sada6', 'Terve', 'Olet paras.');
+INSERT INTO Customer (username, password, birthday, country, gender) VALUES 
+('jaajaa4', 'mxzzz', '1993-06-25', 'Finland', 'm');
+
+INSERT INTO Message (title, content) VALUES ('Hello world', 'Moi. Ollaanko ystäviä?');
+INSERT INTO Message (title, content) VALUES ('Terve', 'Olet paras.');
 
 INSERT INTO Page (title, content, private) VALUES ('minun esittelysivu', 'plaa plaa', true);

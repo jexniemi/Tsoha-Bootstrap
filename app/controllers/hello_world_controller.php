@@ -27,6 +27,7 @@ class HelloWorldController extends BaseController {
     }
 
     public static function browseProfiles() {
+        self::check_logged_in();
         View::make('profile/browseFriends.html');
     }
 

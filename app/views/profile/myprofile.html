@@ -1,21 +1,24 @@
 {% extends "baseX.html" %}
 {% block content %}
+
+{% if user_logged_in %}
 <h1>My profile</h1>
 
 <label>Username</label>
-<p>ASD</p>
+<p>{{user_logged_in.username}}</p>
 
 <label>Country</label>
 
-<p>ASD</p>
+<p>{{user_logged_in.country}}</p>
 
 <label>Looking for</label>
 
-<p>ASD</p>
+<p>Feature not available yet</p>
 
 
 <a href="/tsoha/editprofile" class="btn btn-primary">Edit profile</a>
 
+<br>
 <br>
 <br>
 
@@ -49,5 +52,7 @@
 <div class ="alert alert-success">
     {{msg}}
 </div>
+
+{% endif %}
 
 {% endblock %}
