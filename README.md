@@ -11,11 +11,11 @@ Yleisiä linkkejä:
 
 ## Testitunnuksia kirjautumiseen
 
-Käyttäjätunnus: jukka3 
-Salasana: paavali123
+Käyttäjätunnus: test1 
+Salasana: 1234
 
-Käyttäjätunnus: jaajaa4 
-Salasana: mxzzz
+Käyttäjätunnus: test2
+Salasana: 4321
 
 ## Työn linkkejä
 

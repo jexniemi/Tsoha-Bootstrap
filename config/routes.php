@@ -4,6 +4,10 @@ $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
 });
 
+$routes->post('/logout', function() {
+    UserCtrl::logout();
+});
+
 $routes->get('/', function() {
     HelloWorldController::front();
 });
