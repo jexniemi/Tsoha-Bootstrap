@@ -24,6 +24,7 @@ class PageCtrl extends BaseController {
         $attributes = array(
             'page_id' => $page_id,
             'title' => $params['title'],
+            'private' => $params['private'],
             'content' => $params['content']
         );
 
@@ -34,7 +35,7 @@ class PageCtrl extends BaseController {
             View::make('page/editpage.html', array('errors' => $errors, 'attributes' => $attributes));
         } else {
             $page->update();
-            Redirect::to('/viewpage/' . $page->page_id, array('msg' => 'Page created'));
+            Redirect::to('/viewpage/' . $page->page_id, array('msg' => 'Page edited'));
         }
     }
 
@@ -56,6 +57,7 @@ class PageCtrl extends BaseController {
         $attributes = array(
             'title' => $params['title'],
             'content' => $params['content'],
+            'private' => $params['private'],
             'customer' => self::get_user_logged_in( ) -> customer_id
         );
         $page = new Page($attributes); 

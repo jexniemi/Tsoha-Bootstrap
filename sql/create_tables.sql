@@ -2,13 +2,14 @@ CREATE TABLE Customer(
 	customer_id SERIAL PRIMARY KEY,
 	username VARCHAR(15) NOT NULL UNIQUE,
 	password VARCHAR(15) NOT NULL,
-	birthday date NOT NULL,
+	age INTEGER NOT NULL,
 	country VARCHAR(30) NOT NULL,
 	gender VARCHAR(1) NOT NULL,
 	last_seen Timestamp,
-        lookingf_type VARCHAR(20),
-        lookingf_age VARCHAR(5),
-        lookingf_gender VARCHAR(1)
+        lf_type VARCHAR(20),
+        lf_agemin INTEGER,
+        lf_agemax INTEGER,
+        lf_gender VARCHAR(1)
 );
 
 

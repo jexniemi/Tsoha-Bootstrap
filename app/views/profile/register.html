@@ -2,36 +2,41 @@
 {% block content %}
 <h1>Register</h1>
 
-<form>
-
+<form method="post" action="{{base_path}}/editprofile">
     <div class="form-group">
         <label>Username</label>
-        <input class="form-control"  type="text">
+        <input name="username" class="form-control"  type="text">
     </div>
     <div class="form-group">
         <label>Age</label>
-        <input class="form-control" type="text">
+        <input name="age" class="form-control" type="text">
     </div>
     <div class="form-group">
         <label>Country</label>
-        <input class="form-control" type="text">
-    </div>
-    <div class="form-group">
-        <label>Gender</label>
-        <input class="form-control" type="text">
-    </div>
-    <div class="form-group">
-        <label>Looking for</label>
-        <input class="form-control" type="text">
+        <input name="country" class="form-control" type="text">
     </div>
     <div class="form-group">
         <label>Password</label>
-        <input class="form-control" type="text">
+        <input name="password" class="form-control" type="text">
+    </div>
+    
+    <h2>Looking for</h2>
+    <div class="form-group">
+        <label>Type</label>
+        <input name="lf_type" class="form-control" value="" type="text">
     </div>
     <div class="form-group">
-        <label>Password again</label>
-        <input class="form-control" type="text">
+        <label>Age min</label>
+        <input name="lf_agemin" class="form-control" value="" type="text">
     </div>
+    <div class="form-group">
+        <label>Age max</label>
+        <input name="lf_agemax" class="form-control" value="" type="text">
+    </div>
+    <div class="form-group">
+        <label>Gender</label>
+        <input name="lf_gender" class="form-control" value="" type="text">
+    </div>    
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Register</button>
     </div>

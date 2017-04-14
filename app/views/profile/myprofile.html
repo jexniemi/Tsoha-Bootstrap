@@ -31,7 +31,7 @@
     <thead>
         <tr>
             <th>Title</th>
-            <th>Private</th>
+            <th>Privacy</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -40,7 +40,13 @@
         {% for page in pages %}
         <tr>
             <td><a href="{{base_path}}/viewpage/{{page.page_id}}">{{page.title}}</td>
-            <td></td>
+           
+            {% if page.private %}
+            <td><button type="button" class="btn btn-warning disabled">Private</button></td>
+            {% else %}
+            <td><button type="button" class="btn btn-success disabled">Public</button></td>
+            {% endif %}
+            
             <td><form method="post" action="{{base_path}}/page/{{page.page_id}}/destroy" style="display: inline-block;">
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form></td>

@@ -2,7 +2,7 @@
 
 class User extends BaseModel {
 
-    public $customer_id, $username, $password, $birthday,
+    public $customer_id, $username, $password, $age,
             $country, $gender, $last_seen, $lookingf_type,
             $lookingf_age, $lookingf_gender;
 
@@ -21,13 +21,14 @@ class User extends BaseModel {
                 'customer_id' => $row['customer_id'],
                 'username' => $row['username'],
                 'password' => $row['password'],
-                'birthday' => $row['birthday'],
+                'age' => $row['age'],
                 'country' => $row['country'],
                 'gender' => $row['gender'],
                 'last_seen' => $row['last_seen'],
-                'lookingf_type' => $row['lookingf_type'],
-                'lookingf_age' => $row['lookingf_age'],
-                'lookingf_age' => $row['lookingf_gender']
+                'lf_type' => $row['lf_type'],
+                'lf_agemin' => $row['lf_agemin'],
+                'lf_agemax' => $row['lf_agemax'],
+                'lf_gender' => $row['lf_gender']
             ));
 
             return $user;

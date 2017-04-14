@@ -88,11 +88,11 @@ class Page extends BaseModel {
     
     public function update(){
         $query = DB::connection() -> prepare('UPDATE Page '
-                . 'SET title = :title, content = :content '
+                . 'SET title = :title, content = :content, private = :private '
                 . 'WHERE page_id = :page_id '
                 . 'RETURNING page_id');
         
-        $query -> execute(array('page_id' => $this->page_id, 'title' => $this->title, 'content' => $this->content));
+        $query -> execute(array('page_id' => $this->page_id, 'title' => $this->title,  'private' => $this->private, 'content' => $this->content));
         
         $row = $query->fetch();
         
