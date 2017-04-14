@@ -25,4 +25,8 @@ class UserCtrl extends BaseController {
         Redirect::to('/login', array('msg' => 'You have logged out!'));
     }
 
+    public static function register() {
+        View::make('profile/register.html');
+    }
+
 }
