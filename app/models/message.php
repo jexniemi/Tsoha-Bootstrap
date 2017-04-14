@@ -79,6 +79,22 @@ class Message extends BaseModel {
         return null;
     }
     
+        public static function findUsernameById($customer_id) {
+        $query = DB::connection()->prepare('SELECT * FROM Customer WHERE customer_id = :customer_id LIMIT 1');
+        $query->execute(array('customer_id' => $customer_id));
+        $row = $query->fetch();
+
+        if ($row) {
+            $user = new User(array(
+                'username' => $row['username']
+            ));
+
+            return $user -> username;
+        }
+
+        return null;
+    }     
+    
     public function save(){
         $query = DB::connection() -> prepare('INSERT INTO Message (receiver, title, content, sender) VALUES (:receiver, :title, :content, :sender) RETURNING message_id');
         

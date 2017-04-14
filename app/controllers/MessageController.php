@@ -4,7 +4,8 @@ class MessageController extends BaseController {
 
     public static function messages() {
         self::check_logged_in();
-        $messages = Message::receiverAll(self::get_user_logged_in( ) -> customer_id);
+        $messages = Message::receiverAll(self::get_user_logged_in()->customer_id);
+
         View::make('message/messages.html', array('messages' => $messages));
     }
 
@@ -19,14 +20,14 @@ class MessageController extends BaseController {
 
     public static function store() {
         $params = $_POST;
-        
+
         $user = new User(array('username' => $params['receiver']));
 
         $attributes = array(
-            'receiver' => $user::findIdByUsername($user -> username),
+            'receiver' => $user::findIdByUsername($user->username),
             'title' => $params['title'],
             'content' => $params['content'],
-            'sender' =>  self::get_user_logged_in( ) -> customer_id
+            'sender' => self::get_user_logged_in()->customer_id
         );
         $message = new Message($attributes);
         $errors = $message->errors();
