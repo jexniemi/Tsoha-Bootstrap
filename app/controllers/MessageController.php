@@ -41,4 +41,12 @@ class MessageController extends BaseController {
         }
     }
 
+    public static function destroy($message_id) {
+        $message = new Message(array('message_id' => $message_id));
+
+        $message->delete();
+
+        Redirect::to('/messages', array('msg' => 'Message deleted succesfully'));
+    }
+
 }

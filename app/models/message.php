@@ -97,7 +97,10 @@ class Message extends BaseModel {
         $this->message_id = $row['message_id'];
     }
 
-//    public function validate_receiver(){
+    public function delete() {
+        $query = DB::connection()->prepare('DELETE FROM Message WHERE message_id = :message_id');
+        $query->execute(array('message_id' => $this->message_id));
+    }
 
     public function validate_receiver() {
         $user = new User(array('customer_id' => $this->receiver));

@@ -49,10 +49,13 @@ $routes->post('/editpage/:page_id', function($page_id) {
     PageCtrl::update($page_id);
 });
 
+$routes->post('/messages/:message_id/destroy', function($message_id) {
+    MessageController::destroy($message_id);
+});
+
 $routes->post('/page/:page_id/destroy', function($page_id) {
     PageCtrl::destroy($page_id);
 });
-
 
 $routes->post('/page', function() {
     PageCtrl::store();

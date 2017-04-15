@@ -9,9 +9,10 @@
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th>Topic</th>
+            <th>Title</th>
             <th>From</th>
             <th>Date</th>
+            <th>Delete</th>
         </tr>
     </thead>
 
@@ -21,6 +22,9 @@
             <td><a href="{{base_path}}/viewmessage/{{message.message_id}}">{{message.title}}</td>
             <td>{{message.sender}}</td>
             <td>{{message.time}}</td>
+            <td><form method="post" action="{{base_path}}/messages/{{message.message_id}}/destroy" style="display: inline-block;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form></td>
         </tr> 
         {% endfor %}
     </tbody>
