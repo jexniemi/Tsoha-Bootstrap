@@ -4,7 +4,7 @@ class PageCtrl extends BaseController {
 
     public static function pages() {
         self::check_logged_in();
-        $pages = Page::userAll(self::get_user_logged_in( ) -> customer_id);
+        $pages = Page::userAll(self::get_user_logged_in()->customer_id);
         View::make('profile/myprofile.html', array('pages' => $pages));
     }
 
@@ -58,9 +58,9 @@ class PageCtrl extends BaseController {
             'title' => $params['title'],
             'content' => $params['content'],
             'private' => $params['private'],
-            'customer' => self::get_user_logged_in( ) -> customer_id
+            'customer' => self::get_user_logged_in()->customer_id
         );
-        $page = new Page($attributes); 
+        $page = new Page($attributes);
         $errors = $page->errors();
 
         if (count($errors) == 0) {
@@ -71,5 +71,7 @@ class PageCtrl extends BaseController {
             View::make('page/newpage.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
+
+
 
 }

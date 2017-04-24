@@ -7,7 +7,14 @@
     {{msg}}
 </div>
 
-<p>Find new friends online! Start now by registering here --> (tehdään myöhemmin)</p>
+{% if user_logged_in %}
+<p>You can now start finding friends!</p>
+{% else %}
 
+<p>Find new friends online! Start now by registering here: </p>
+<br>
+<a href="/tsoha/register" class="btn btn-primary">Register</a>
+
+{% endif %}
 
 {% endblock %}

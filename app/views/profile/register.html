@@ -2,40 +2,73 @@
 {% block content %}
 <h1>Register</h1>
 
-<form method="post" action="{{base_path}}/editprofile">
+<form method="post" action="{{base_path}}/register">
     <div class="form-group">
         <label>Username</label>
-        <input name="username" class="form-control"  type="text">
+        <input name="username" class="form-control"  type="text" value ="{{attributes.username}}" >
     </div>
+        <div class="form-group">
+        <label>Gender</label>
+        <select class="form-control" name="gender">
+            <option value="m">Male</option>
+            <option value="f">Female</option>
+        </select>
+    </div> 
     <div class="form-group">
         <label>Age</label>
-        <input name="age" class="form-control" type="text">
+        <select class="form-control" name="age">
+            {% if ages %}
+            {% for age in ages %}
+            <option value={{age}}>{{age}}</option>
+            {% endfor %}
+            {% endif %}
+        </select>
     </div>
     <div class="form-group">
         <label>Country</label>
-        <input name="country" class="form-control" type="text">
+        <input name="country" class="form-control" type="text" value ="{{attributes.country}}" >
     </div>
     <div class="form-group">
         <label>Password</label>
-        <input name="password" class="form-control" type="text">
+        <input name="password" class="form-control" type="text" value ="{{attributes.password}}" >
     </div>
-    
+
     <h2>Looking for</h2>
     <div class="form-group">
-        <label>Type</label>
-        <input name="lf_type" class="form-control" value="" type="text">
+        <label>Friendship type</label>
+        <select class="form-control" name="lf_type">
+            <option value="BFF">BFF</option>
+            <option value="Online friends">Online friends</option>
+            <option value="Beer buddy">Beer buddy</option>
+            <option value="Movie buddy">Movie buddy</option>
+        </select>
     </div>
     <div class="form-group">
         <label>Age min</label>
-        <input name="lf_agemin" class="form-control" value="" type="text">
+        <select class="form-control" name="lf_agemin">
+            {% if ages %}
+            {% for age in ages %}
+            <option value={{age}}>{{age}}</option>
+            {% endfor %}
+            {% endif %}
+        </select>
     </div>
     <div class="form-group">
         <label>Age max</label>
-        <input name="lf_agemax" class="form-control" value="" type="text">
+        <select class="form-control" name="lf_agemax">
+            {% if ages %}
+            {% for age in ages %}
+            <option value={{age}}>{{age}}</option>
+            {% endfor %}
+            {% endif %}
+        </select> 
     </div>
     <div class="form-group">
         <label>Gender</label>
-        <input name="lf_gender" class="form-control" value="" type="text">
+        <select class="form-control" name="lf_gender">
+            <option value="f">Women</option>
+            <option value="m">Men</option>
+        </select>
     </div>    
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Register</button>

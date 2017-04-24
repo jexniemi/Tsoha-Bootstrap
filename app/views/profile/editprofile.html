@@ -2,13 +2,11 @@
 {% block content %}
 <h1>Edit your profile</h1>
 
+<form method="post" action="{{base_path}}/myprofile/{{attributes.customer_id}}/destroy" style="display: inline-block;">
+    <button type="submit" class="btn btn-danger">Delete account</button>
+</form>
+
 <form method="post" action="{{base_path}}/editprofile">
-    <div class="checkbox">
-        <label>
-            <input type="checkbox">
-            Delete account
-        </label>
-    </div>  
 
     <div class="form-group">
         <label>Country</label>
@@ -17,23 +15,43 @@
 
     <h2>Looking for</h2>
     <div class="form-group">
-        <label>Type</label>
-        <input name="lf_type" class="form-control" value="" type="text">
+        <label>Friendship type</label>
+        <select class="form-control" name="lf_type">
+            <option value="BFF">BFF</option>
+            <option value="Online friends">Online friends</option>
+            <option value="Beer buddy">Beer buddy</option>
+            <option value="Movie buddy">Movie buddy</option>
+        </select>
     </div>
     <div class="form-group">
         <label>Age min</label>
-        <input name="lf_agemin" class="form-control" value="" type="text">
+        <select class="form-control" name="lf_agemin">
+            {% if ages %}
+            {% for age in ages %}
+            <option value={{age}}>{{age}}</option>
+            {% endfor %}
+            {% endif %}
+        </select>
     </div>
     <div class="form-group">
         <label>Age max</label>
-        <input name="lf_agemax" class="form-control" value="" type="text">
+        <select class="form-control" name="lf_agemax">
+            {% if ages %}
+            {% for age in ages %}
+            <option value={{age}}>{{age}}</option>
+            {% endfor %}
+            {% endif %}
+        </select> 
     </div>
     <div class="form-group">
         <label>Gender</label>
-        <input name="lf_gender" class="form-control" value="" type="text">
-    </div>    
+        <select class="form-control" name="lf_gender">
+            <option value="f">Women</option>
+            <option value="m">Men</option>
+        </select>
+    </div>  
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary">Save</button>
     </div>
 </form>
 {% endblock %}

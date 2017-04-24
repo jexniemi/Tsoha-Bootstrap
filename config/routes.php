@@ -30,7 +30,7 @@ $routes->get('/myprofile', function() {
 });
 
 $routes->get('/editprofile', function() {
-    HelloWorldController::editProfile();
+    UserCtrl::editProfile();
 });
 
 $routes->get('/newpage', function() {
@@ -79,6 +79,13 @@ $routes->get('/viewmessage/:message_id', function($message_id) {
 });
 
 $routes->get('/register', function() {
-    HelloWorldController::register();
+    UserCtrl::register();
 });
 
+$routes->post('/register', function() {
+    UserCtrl::store();
+});
+
+$routes->post('/myprofile/:customer_id/destroy', function($customer_id) {
+    UserCtrl::destroy($customer_id);
+});
