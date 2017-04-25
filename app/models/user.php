@@ -8,7 +8,12 @@ class User extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array();
+        $this->validators = array(
+            'validate_username',
+            'validate_password',
+            'validate_country',
+            'validate_ages'
+        );
     }
 
     public static function find($customer_id) {
@@ -89,17 +94,18 @@ class User extends BaseModel {
     public function update() {
         $query = DB::connection()->prepare('UPDATE Customer '
                 . 'SET country = :country, lf_type = :lf_type, lf_agemin = :lf_agemin, '
-                . 'lf_agemax = :lf_agemax, lf_gender = :lf_gender'
+                . 'lf_agemax = :lf_agemax, lf_gender = :lf_gender '
                 . 'WHERE customer_id = :customer_id '
                 . 'RETURNING customer_id');
 
         $query->execute(array(
+            'customer_id' => $this->customer_id,
             'country' => $this->country,
             'lf_type' => $this->lf_type,
             'lf_agemin' => $this->lf_agemin,
             'lf_agemax' => $this->lf_agemax,
-            'lf_gender' => $this->lf_gender));        
-        
+            'lf_gender' => $this->lf_gender));
+
         $row = $query->fetch();
 
         Kint::trace();
@@ -136,15 +142,25 @@ class User extends BaseModel {
     }
 
     public function validate_username() {
-        return $this->validate_string_minmax($this->title, 4, 15);
+        return $this->validate_string_minmax($this->username, 4, 15);
     }
 
     public function validate_password() {
-        return $this->validate_string_minmax($this->title, 4, 15);
+        return $this->validate_string_minmax($this->password, 4, 15);
     }
 
     public function validate_country() {
-        return $this->validate_string_minmax($this->title, 2, 30);
+        return $this->validate_string_minmax($this->country, 1, 30);
+    }
+
+    public function validate_ages() {
+        $errors = array();
+        
+        if ($this->lf_agemin > $this->lf_agemax) {
+            $errors[] = 'Minimum age must be smaller than maximum age';
+        }      
+
+        return $errors;
     }
 
 }

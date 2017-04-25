@@ -25,7 +25,11 @@ class UserCtrl extends BaseController {
             'customer_id' => self::get_user_logged_in()->customer_id
         );
 
-        View::make('profile/editprofile.html', array('attributes' => $attributes));
+        for ($i = 18; $i < 100; $i++) {
+            $ages[] = $i;
+        }
+
+        View::make('profile/editprofile.html', array('attributes' => $attributes, 'ages' => $ages));
     }
 
     public static function destroy($customer_id) {
@@ -42,19 +46,22 @@ class UserCtrl extends BaseController {
     }
 
     public static function register() {
-
         for ($i = 18; $i < 100; $i++) {
             $ages[] = $i;
         }
 
         View::make('profile/register.html', array('ages' => $ages));
     }
-    
-        public static function update($page_id) {
+
+    public static function update($customer_id) {
         $params = $_POST;
 
         $attributes = array(
+            'customer_id' => $customer_id,
+            'username' => self::get_user_logged_in()->username,
+            'password' => self::get_user_logged_in()->password,
             'country' => $params['country'],
+            'lf_type' => $params['lf_type'],
             'lf_agemin' => $params['lf_agemin'],
             'lf_agemax' => $params['lf_agemax'],
             'lf_gender' => $params['lf_gender']
@@ -64,10 +71,13 @@ class UserCtrl extends BaseController {
         $errors = $user->errors();
 
         if (count($errors) > 0) {
-            View::make('editprofile', array('errors' => $errors, 'attributes' => $attributes));
+            for ($i = 18; $i < 100; $i++) {
+                $ages[] = $i;
+            }
+            View::make('/profile/editprofile.html', array('errors' => $errors, 'attributes' => $attributes, 'ages' => $ages));
         } else {
             $user->update();
-            Redirect::to('/myprofile' . $user->customer_id, array('msg' => 'Profile edit succesful'));
+            Redirect::to('/myprofile', array('msg' => 'Profile edit succesful'));
         }
     }
 
@@ -94,7 +104,10 @@ class UserCtrl extends BaseController {
 
             Redirect::to('/', array('msg' => 'Account created, you can log in now'));
         } else {
-            View::make('/register', array('errors' => $errors, 'attributes' => $attributes));
+            for ($i = 18; $i < 100; $i++) {
+                $ages[] = $i;
+            }
+            View::make('/register', array('errors' => $errors, 'attributes' => $attributes, 'ages' => $ages));
         }
     }
 

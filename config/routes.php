@@ -33,6 +33,10 @@ $routes->get('/editprofile', function() {
     UserCtrl::editProfile();
 });
 
+$routes->post('/editprofile/:customer_id', function($customer_id) {
+    UserCtrl::update($customer_id);
+});
+
 $routes->get('/newpage', function() {
     PageCtrl::newPage();
 });
