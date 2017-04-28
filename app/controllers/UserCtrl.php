@@ -5,6 +5,11 @@ class UserCtrl extends BaseController {
     public static function login() {
         View::make('profile/login.html');
     }
+    
+    public static function browseAll() {
+        $users = User::all();
+        View::make('profile/browseFriends.html', array('users' => $users));
+    }
 
     public static function handle_login() {
         $params = $_POST;
@@ -110,5 +115,4 @@ class UserCtrl extends BaseController {
             View::make('/register', array('errors' => $errors, 'attributes' => $attributes, 'ages' => $ages));
         }
     }
-
 }

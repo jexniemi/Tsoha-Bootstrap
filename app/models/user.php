@@ -16,6 +16,32 @@ class User extends BaseModel {
         );
     }
 
+    public static function all() {
+        $query = DB::connection()->prepare('SELECT * FROM Customer ORDER BY username ASC');
+        $query->execute();
+
+        $rows = $query->fetchAll();
+        $users = array();
+
+        foreach ($rows as $row) {
+            $users[] = new User(array(
+                'customer_id' => $row['customer_id'],
+                'username' => $row['username'],
+                'password' => $row['password'],
+                'age' => $row['age'],
+                'country' => $row['country'],
+                'gender' => $row['gender'],
+                'last_seen' => $row['last_seen'],
+                'lf_type' => $row['lf_type'],
+                'lf_agemin' => $row['lf_agemin'],
+                'lf_agemax' => $row['lf_agemax'],
+                'lf_gender' => $row['lf_gender']
+            ));
+        }
+
+        return $users;
+    }
+
     public static function find($customer_id) {
         $query = DB::connection()->prepare('SELECT * FROM Customer WHERE customer_id = :customer_id LIMIT 1');
         $query->execute(array('customer_id' => $customer_id));
@@ -137,6 +163,8 @@ class User extends BaseModel {
     }
 
     public function delete() {
+        $query = DB::connection()->prepare('DELETE FROM Page WHERE customer = :customer_id');
+        $query->execute(array('customer_id' => $this->customer_id));
         $query = DB::connection()->prepare('DELETE FROM Customer WHERE customer_id = :customer_id');
         $query->execute(array('customer_id' => $this->customer_id));
     }
@@ -155,10 +183,10 @@ class User extends BaseModel {
 
     public function validate_ages() {
         $errors = array();
-        
+
         if ($this->lf_agemin > $this->lf_agemax) {
             $errors[] = 'Minimum age must be smaller than maximum age';
-        }      
+        }
 
         return $errors;
     }

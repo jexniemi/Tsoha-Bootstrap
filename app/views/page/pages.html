@@ -1,0 +1,29 @@
+{% extends "baseX.html" %}
+{% block content %}
+<h1>Pages</h1>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Privacy</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for page in pages %}
+        <tr>
+            <td>{{page.title}}</td>
+            
+            
+            {% if page.private %}
+            <td><button type="button" class="btn btn-warning disabled">Private</button></td>
+            {% else %}
+            <td><button type="button" class="btn btn-success disabled">Public</button></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

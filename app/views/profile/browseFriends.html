@@ -1,27 +1,29 @@
 {% extends "baseX.html" %}
 {% block content %}
-  <h1>Meet friends!</h1>
+<h1>Meet friends!</h1>
 
-  <table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered">
     <thead>
-      <tr>
-        <th>Username</th>
-        <th>Age</th>
-        <th>Gender</th>
-        <th>Looking for</th>
-        <th>Last seen</th>
-      </tr>
+        <tr>
+            <th>Username</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Country</th>
+            <th>Looking for</th>
+        </tr>
     </thead>
 
     <tbody>
 
-      <tr>
-        <td>ttk91 (linkki esittelysivulle)</td>
-        <td>25</td>
-        <td>Male</td>
-        <td>bff</td>
-        <td>9.12.2014</td>
-      </tr>
+        {% for user in users %}
+        <tr>
+            <td><a href="{{base_path}}/browse/{{user.customer_id}}">{{user.username}}</td>
+            <td>{{user.age}}</td>
+            <td>{{user.gender}}</td>
+            <td>{{user.country}}</td>
+            <td>{{user.lf_type}}</td>
+        </tr>
+        {% endfor %}
     </tbody>
-  </table>
+</table>
 {% endblock %}

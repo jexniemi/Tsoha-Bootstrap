@@ -2,10 +2,15 @@
 
 class PageCtrl extends BaseController {
 
-    public static function pages() {
+    public static function pagesUserLoggedIn() {
         self::check_logged_in();
         $pages = Page::userAll(self::get_user_logged_in()->customer_id);
         View::make('profile/myprofile.html', array('pages' => $pages));
+    }
+    
+    public static function getAllByUser($customer_id) {
+        $pages = Page::userAll($customer_id);
+        View::make('page/pages.html', array('pages' => $pages));        
     }
 
     public static function viewPage($page_id) {

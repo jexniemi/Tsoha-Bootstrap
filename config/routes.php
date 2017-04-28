@@ -13,7 +13,11 @@ $routes->get('/', function() {
 });
 
 $routes->get('/browse', function() {
-    HelloWorldController::browseProfiles();
+    UserCtrl::browseAll();
+});
+
+$routes->get('/browse/:customer_id', function($customer_id) {
+    PageCtrl::getAllByUser($customer_id);
 });
 
 $routes->get('/login', function() {
@@ -26,7 +30,7 @@ $routes->post('/login', function() {
 });
 
 $routes->get('/myprofile', function() {
-    PageCtrl::pages();
+    PageCtrl::pagesUserLoggedIn();
 });
 
 $routes->get('/editprofile', function() {
