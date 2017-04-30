@@ -163,6 +163,8 @@ class User extends BaseModel {
     }
 
     public function delete() {
+        $query = DB::connection()->prepare('DELETE FROM Access WHERE customer = :customer_id');
+        $query->execute(array('customer_id' => $this->customer_id));
         $query = DB::connection()->prepare('DELETE FROM Page WHERE customer = :customer_id');
         $query->execute(array('customer_id' => $this->customer_id));
         $query = DB::connection()->prepare('DELETE FROM Customer WHERE customer_id = :customer_id');

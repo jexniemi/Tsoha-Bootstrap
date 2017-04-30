@@ -100,10 +100,12 @@ class Page extends BaseModel {
         Kint::trace();
         Kint::dump($row);
 
+        if ($this->private) {
         $query = DB::connection()->prepare('INSERT INTO Access (page, customer) VALUES (:page, :customer) RETURNING page');
         $query->execute(array(
             'page' => $row['page_id'],
             'customer' => $this->customer));
+        }
 
         $row = $query->fetch();
         Kint::trace();
@@ -129,12 +131,12 @@ class Page extends BaseModel {
     }
 
     public function delete() {
-        $query = DB::connection()->prepare('DELETE FROM Page WHERE page_id = :page_id');
-        $query->execute(array('page_id
-
+        $query = DB::connection()->prepare('DELETE FROM Access WHERE page = :page_id');
+        $query->execute(array('page_id' => $this->page_id));
         
-
-        ' => $this->page_id));
+        
+        $query = DB::connection()->prepare('DELETE FROM Page WHERE page_id = :page_id');
+        $query->execute(array('page_id' => $this->page_id));
     }
 
     public function validate_title() {

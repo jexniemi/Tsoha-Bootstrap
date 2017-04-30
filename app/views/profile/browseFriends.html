@@ -21,11 +21,13 @@
 
         {% for user in users %}
         <tr>
+            {% if user.customer_id != user_logged_in.customer_id %}
             <td><a href="{{base_path}}/browse/{{user.customer_id}}">{{user.username}}</td>
             <td>{{user.age}}</td>
             <td>{{user.gender}}</td>
             <td>{{user.country}}</td>
             <td>{{user.lf_type}}</td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>

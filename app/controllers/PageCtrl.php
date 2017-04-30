@@ -54,7 +54,6 @@ class PageCtrl extends BaseController {
 
     public static function destroy($page_id) {
         $page = new Page(array('page_id' => $page_id));
-
         $page->delete();
 
         Redirect::to('/myprofile', array('msg' => 'Page deleted succesfully'));
