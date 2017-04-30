@@ -9,6 +9,10 @@
 
 <p>{{page.content}}</p>
 
+{% if page.customer == user_logged_in.customer_id %}
+
 <a href="/tsoha/editpage/{{page.page_id}}"  class="btn btn-primary">Edit this page</a>
+
+{% endif %}
 
 {% endblock %}

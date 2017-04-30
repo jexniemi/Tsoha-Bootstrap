@@ -7,15 +7,23 @@ class PageCtrl extends BaseController {
         $pages = Page::userAll(self::get_user_logged_in()->customer_id);
         View::make('profile/myprofile.html', array('pages' => $pages));
     }
-    
+
     public static function getAllByUser($customer_id) {
         $pages = Page::userAll($customer_id);
-        View::make('page/pages.html', array('pages' => $pages));        
+        View::make('page/pages.html', array('pages' => $pages));
     }
 
     public static function viewPage($page_id) {
         $page = Page::find($page_id);
-        View::make('page/viewpage.html', array('page' => $page));
+        if ($page->private) {
+            if (Page::hasAccess($page_id, self::get_user_logged_in()->customer_id)) {
+                View::make('page/viewpage.html', array('page' => $page));
+            } else {
+                Redirect::to('/browse', array('msg' => 'You do not have access to this page'));
+            }
+        } else {
+            View::make('page/viewpage.html', array('page' => $page));
+        }
     }
 
     public static function edit($page_id) {
@@ -76,7 +84,5 @@ class PageCtrl extends BaseController {
             View::make('page/newpage.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
-
-
 
 }
