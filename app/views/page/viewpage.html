@@ -5,6 +5,16 @@
     {{msg}}
 </div>
 
+{% if errors %}
+    <div class="alert alert-danger">
+         <ul>
+            {% for error in errors %}
+            <li>{{error}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
 <h1>{{page.title}}</h1>
 
 <p>{{page.content}}</p>
@@ -12,6 +22,40 @@
 {% if page.customer == user_logged_in.customer_id %}
 
 <a href="/tsoha/editpage/{{page.page_id}}"  class="btn btn-primary">Edit this page</a>
+
+{% endif %}
+
+{% if page.private %}
+<br>
+<br>
+<br>
+<br>
+
+{% if page.customer == user_logged_in.customer_id %}
+
+<h4>Users with access to this page:</h4>
+
+<ul>
+    {% for user in users %}
+
+    <li>{{user.username}}</li>
+
+    {% endfor %}
+</ul>
+
+<br>
+
+<form method="post" action="{{base_path}}/viewpage/{{page.page_id}}/access">
+    <div class="form-group">
+        <label>Give access to user by typing username:</label>
+        <input name="username" class="form-control"  type="text" value ="{{attributes.username}}" >
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add access</button>
+    </div>
+</form>
+
+{% endif %}
 
 {% endif %}
 

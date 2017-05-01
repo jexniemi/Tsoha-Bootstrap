@@ -71,7 +71,7 @@ class Message extends BaseModel {
         if ($row) {
             $message = new Message(array(
                 'message_id' => $row['message_id'],
-                'receiver' => $row['receiver'],
+                'receiver' => User::findUsernameById($row['receiver']),
                 'title' => $row['title'],
                 'content' => $row['content'],
                 'time' => $row['time'],

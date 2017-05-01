@@ -3,12 +3,14 @@
 
 <h2>Welcome to meetFriends!</h2>
 
+{% if msg != '' %}
 <div class ="alert alert-success">
     {{msg}}
 </div>
+{% endif %}
 
 {% if user_logged_in %}
-<p>You can now start finding friends!</p>
+<p>You can start finding friends now! Simply click browse and find your new bff</p>
 {% else %}
 
 <p>Find new friends online! Start now by registering here: </p>

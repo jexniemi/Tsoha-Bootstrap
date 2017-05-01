@@ -17,7 +17,7 @@ class PageCtrl extends BaseController {
         $page = Page::find($page_id);
         if ($page->private) {
             if (Page::hasAccess($page_id, self::get_user_logged_in()->customer_id)) {
-                View::make('page/viewpage.html', array('page' => $page));
+                View::make('page/viewpage.html', array('page' => $page, 'users' => User::findAllWithAccess($page_id)));
             } else {
                 Redirect::to('/browse', array('msg' => 'You do not have access to this page'));
             }
@@ -29,6 +29,24 @@ class PageCtrl extends BaseController {
     public static function edit($page_id) {
         $page = Page::find($page_id);
         View::make('page/editpage.html', array('attributes' => $page));
+    }
+
+    public static function giveAccess($page_id) {
+        $params = $_POST;
+
+        $attributes = array(
+            'username' => $params['username']
+        );
+
+        $customer_id = User::findIdByUsername($params['username']);
+        
+        if ($customer_id == null) {
+            $errors[] = 'Username does not exist';
+            Redirect::to('/viewpage/' . $page_id, array('errors' => $errors, 'attributes' => $attributes));
+        } else {
+            Page::addAccess($page_id, $customer_id);
+            Redirect::to('/viewpage/' . $page_id, array('msg' => 'Access given to user ' . $params['username']));
+        }
     }
 
     public static function update($page_id) {

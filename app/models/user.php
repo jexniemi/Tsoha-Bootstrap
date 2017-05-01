@@ -41,6 +41,23 @@ class User extends BaseModel {
 
         return $users;
     }
+    
+    public static function findAllWithAccess($page_id) {
+        $query = DB::connection()->prepare('SELECT * FROM Access WHERE page = :page_id');
+        $query->execute(array('page_id' => $page_id));
+
+        $rows = $query->fetchAll();
+        $users = array();
+
+        foreach ($rows as $row) {
+            $users[] = new User(array(
+                'customer_id' => $row['customer'],
+                'username' => User::findUsernameById($row['customer'])
+            ));
+        }
+
+        return $users;
+    }
 
     public static function find($customer_id) {
         $query = DB::connection()->prepare('SELECT * FROM Customer WHERE customer_id = :customer_id LIMIT 1');

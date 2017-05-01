@@ -52,19 +52,25 @@ class Page extends BaseModel {
         return null;
     }
 
+    public static function addAccess($page_id, $customer_id) {
+        $query = DB::connection()->prepare('INSERT INTO Access (page, customer) VALUES (:page, :customer)');
+        $query->execute(array(
+            'page' => $page_id,
+            'customer' => $customer_id));
+    }
+
     public static function hasAccess($page_id, $customer_id) {
         $query = DB::connection()->prepare('SELECT * FROM Access WHERE page = :page_id '
                 . 'AND customer = :customer_id LIMIT 1');
 
         $query->execute(array('page_id' => $page_id, 'customer_id' => $customer_id));
         $row = $query->fetch();
-        
+
         if ($row) {
             return true;
         } else {
             return false;
         }
-        
     }
 
     public static function userAll($customer_id) {
@@ -97,21 +103,20 @@ class Page extends BaseModel {
             'customer' => $this->customer));
 
         $row = $query->fetch();
+        $this->page_id = $row['page_id'];
         Kint::trace();
         Kint::dump($row);
 
         if ($this->private) {
-        $query = DB::connection()->prepare('INSERT INTO Access (page, customer) VALUES (:page, :customer) RETURNING page');
-        $query->execute(array(
-            'page' => $row['page_id'],
-            'customer' => $this->customer));
+            $query = DB::connection()->prepare('INSERT INTO Access (page, customer) VALUES (:page, :customer)');
+            $query->execute(array(
+                'page' => $this->page_id,
+                'customer' => $this->customer));
         }
 
         $row = $query->fetch();
         Kint::trace();
         Kint::dump($row);
-
-        $this->page_id = $row['page'];
     }
 
     public function update() {
@@ -133,8 +138,8 @@ class Page extends BaseModel {
     public function delete() {
         $query = DB::connection()->prepare('DELETE FROM Access WHERE page = :page_id');
         $query->execute(array('page_id' => $this->page_id));
-        
-        
+
+
         $query = DB::connection()->prepare('DELETE FROM Page WHERE page_id = :page_id');
         $query->execute(array('page_id' => $this->page_id));
     }

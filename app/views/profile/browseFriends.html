@@ -1,10 +1,14 @@
 {% extends "baseX.html" %}
 {% block content %}
-<h1>Meet friends!</h1>
+<h1>Find your new friend!</h1>
 
+{% if msg != '' %}
 <div class="alert alert-danger">
   {{msg}}
 </div>
+{% endif %}
+
+<p>Click usernames to browse the user's introduction pages</p>
 
 <table class="table table-striped table-bordered">
     <thead>

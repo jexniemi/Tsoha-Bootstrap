@@ -10,7 +10,7 @@ class UserCtrl extends BaseController {
         $users = User::all();
         View::make('profile/browseFriends.html', array('users' => $users));
     }
-
+    
     public static function handle_login() {
         $params = $_POST;
 

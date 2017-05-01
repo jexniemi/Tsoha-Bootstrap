@@ -1,13 +1,20 @@
 {% extends "baseX.html" %}
 {% block content %}
 
+{% if msg != '' %}
 <div class ="alert alert-success">
     {{msg}}
 </div>
 
-<label>From</label>
+{% endif %}
 
-<p>{{message.sender}}</p/>
+{% if user_logged_in.username == message.sender %}
+<label>To</label>
+<p>{{message.receiver}}</p>
+{% elseif user_logged_in.username == message.receiver %}
+<label>From</label>
+<p>{{message.sender}}</p>
+{% endif %}
 
 <h3>{{message.title}}</h3>
 

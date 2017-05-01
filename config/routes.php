@@ -53,6 +53,10 @@ $routes->get('/viewpage/:page_id', function($page_id) {
     PageCtrl::viewPage($page_id);
 });
 
+$routes->post('/viewpage/:page_id/access', function($page_id) {
+    PageCtrl::giveAccess($page_id);
+});
+
 $routes->post('/editpage/:page_id', function($page_id) {
     PageCtrl::update($page_id);
 });
