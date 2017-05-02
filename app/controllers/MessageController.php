@@ -10,15 +10,18 @@ class MessageController extends BaseController {
     }
 
     public static function viewMessage($message_id) {
+        self::check_logged_in();
         $message = Message::find($message_id);
         View::make('message/viewMessage.html', array('message' => $message));
     }
 
     public static function newMessage() {
+        self::check_logged_in();
         View::make('message/newMessage.html');
     }
 
     public static function store() {
+        self::check_logged_in();
         $params = $_POST;
 
         $user = new User(array('username' => $params['receiver']));
@@ -42,6 +45,7 @@ class MessageController extends BaseController {
     }
 
     public static function destroy($message_id) {
+        self::check_logged_in();
         $message = new Message(array('message_id' => $message_id));
 
         $message->delete();

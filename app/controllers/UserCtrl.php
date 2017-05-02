@@ -7,6 +7,7 @@ class UserCtrl extends BaseController {
     }
     
     public static function browseAll() {
+        self::check_logged_in();
         $users = User::all();
         View::make('profile/browseFriends.html', array('users' => $users));
     }
@@ -26,6 +27,7 @@ class UserCtrl extends BaseController {
     }
 
     public static function editProfile() {
+        self::check_logged_in();
         $attributes = array(
             'customer_id' => self::get_user_logged_in()->customer_id
         );
@@ -38,6 +40,7 @@ class UserCtrl extends BaseController {
     }
 
     public static function destroy($customer_id) {
+        self::check_logged_in();
         $user = new User(array('customer_id' => $customer_id));
         $user->delete();
 
@@ -55,10 +58,11 @@ class UserCtrl extends BaseController {
             $ages[] = $i;
         }
 
-        View::make('profile/register.html', array('ages' => $ages));
+        View::make('/profile/register.html', array('ages' => $ages));
     }
 
     public static function update($customer_id) {
+        self::check_logged_in();
         $params = $_POST;
 
         $attributes = array(
@@ -112,7 +116,7 @@ class UserCtrl extends BaseController {
             for ($i = 18; $i < 100; $i++) {
                 $ages[] = $i;
             }
-            View::make('/register', array('errors' => $errors, 'attributes' => $attributes, 'ages' => $ages));
+            View::make('/profile/register.html', array('errors' => $errors, 'attributes' => $attributes, 'ages' => $ages));
         }
     }
 }
