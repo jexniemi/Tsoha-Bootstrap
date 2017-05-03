@@ -5,13 +5,13 @@ class UserCtrl extends BaseController {
     public static function login() {
         View::make('profile/login.html');
     }
-    
+
     public static function browseAll() {
         self::check_logged_in();
         $users = User::all();
         View::make('profile/browseFriends.html', array('users' => $users));
     }
-    
+
     public static function handle_login() {
         $params = $_POST;
 
@@ -108,6 +108,11 @@ class UserCtrl extends BaseController {
         $user = new User($attributes);
         $errors = $user->errors();
 
+        if (User::findIdByUsername($params['username']) != null) {
+            $errors[] = 'Username already exists';
+        }
+
+
         if (count($errors) == 0) {
             $user->save();
 
@@ -119,4 +124,5 @@ class UserCtrl extends BaseController {
             View::make('/profile/register.html', array('errors' => $errors, 'attributes' => $attributes, 'ages' => $ages));
         }
     }
+
 }
