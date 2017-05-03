@@ -145,11 +145,15 @@ class Page extends BaseModel {
     }
 
     public function validate_title() {
-        return $this->validate_string_minmax($this->title, 1, 20);
+        return $this->validate_string_minmax('"Title"', $this->title, 1, 20);
     }
 
     public function validate_content() {
-        return $this->validate_string_minmax($this->title, 1, 2000);
+        return $this->validate_string_minmax("'About me'", $this->title, 1, 2000);
+    }
+    
+    public function validate_private() {
+        return $this->validate_num($this->private, 0, 1);
     }
 
 }

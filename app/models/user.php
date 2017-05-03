@@ -189,16 +189,32 @@ class User extends BaseModel {
     }
 
     public function validate_username() {
-        return $this->validate_string_minmax($this->username, 4, 15);
+        return $this->validate_string_minmax('"Username"', $this->username, 4, 15);
     }
 
     public function validate_password() {
-        return $this->validate_string_minmax($this->password, 4, 15);
+        return $this->validate_string_minmax('"Password"', $this->password, 4, 15);
     }
 
     public function validate_country() {
-        return $this->validate_string_minmax($this->country, 1, 30);
+        return $this->validate_string_minmax('"Country"',$this->country, 1, 30);
     }
+    
+    public function validate_gender() {
+        return $this->validate_string_minmax('"Gender"',$this->gender, 1, 1);
+    }    
+    
+    public function validate_age() {
+        return $this->validate_num($this->age, 18, 99);
+    }
+    
+    public function validate_lf_type() {
+        return $this->validate_string_minmax('"Looking for: Type"',$this->lf_type, 1, 20);
+    }
+    
+     public function validate_lf_gender() {
+         return $this->validate_string_minmax('"Looking for: Gender"',$this->lf_gender, 1, 1);
+     }
 
     public function validate_ages() {
         $errors = array();

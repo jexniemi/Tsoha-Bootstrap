@@ -28,16 +28,16 @@ class BaseModel {
         return $errors;
     }
 
-    public function validate_string_minmax($string, $min, $max) {
+    public function validate_string_minmax($fieldName, $string, $min, $max) {
         $errors = array();
         if ($string == '' || $string == null) {
-            $errors[] = 'Field must not be empty!';
+            $errors[] = $fieldName .  ' must not be empty!';
         }
         if (strlen($string) < $min) {
-            $errors[] = 'Field must contain at least ' . $min . ' characters!';
+            $errors[] = $fieldName .  ' must contain at least ' . $min . ' characters!';
         }
         if (strlen($string) > $max) {
-            $errors[] = 'Field must contain less than ' . $max . ' characters';
+            $errors[] = $fieldName .  ' must contain less than ' . $max . ' characters';
         }
 
         return $errors;

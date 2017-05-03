@@ -8,7 +8,7 @@ class Message extends BaseModel {
         parent::__construct($attributes);
         $this->validators = array(
             'validate_receiver',
-            'validate_topic',
+            'validate_title',
             'validate_content');
     }
 
@@ -108,12 +108,12 @@ class Message extends BaseModel {
         return $this->validate_username($username);
     }
 
-    public function validate_topic() {
-        return $this->validate_string_minmax($this->title, 1, 20);
+    public function validate_title() {
+        return $this->validate_string_minmax('"Title"', $this->title, 1, 20);
     }
 
     public function validate_content() {
-        return $this->validate_string_minmax($this->title, 1, 2000);
+        return $this->validate_string_minmax('"Message"', $this->title, 1, 2000);
     }
 
 }
